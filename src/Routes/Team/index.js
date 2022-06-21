@@ -97,12 +97,6 @@ router.delete("/delete", async (req, res) => {
                         }
 
                     })
-
-
-
-
-
-
                 }
             }
             )
@@ -126,6 +120,30 @@ router.patch("/update", async (req, res) => {
                         new: true
                     })
                     res.status(202).send(updateauth)
+
+                    const teamMemberId = req.body.team[req.body.teamMemberIndex]._id;
+                    usersSchema.findOne({ _id: teamMemberId }, async (err, teamMember) => {
+                        if (err) { }
+                        else {
+                            req.body.suggestions = teamMember.suggestions == undefined ? {} : teamMember.suggestions;
+                            Array.isArray(req.body.suggestions[req.body.date]) == false ? req.body.suggestions[req.body.date] = new Array(req.body[req.body.date][req.body.eventIndex]) : req.body.suggestions[req.body.date].push(req.body[req.body.date][req.body.eventIndex])
+                            const suggestionsCheck = req.body.suggestions[req.body.date].filter(data =>
+                                data.eventTitle != req.body[req.body.date][req.body.eventIndex].eventTitle
+                            );
+                            console.log(suggestionsCheck);
+                            if (suggestionsCheck[0] == undefined) {
+                                await usersSchema.findByIdAndUpdate(teamMemberId, { suggestions: req.body.suggestions }, {
+                                    new: true
+                                });
+                            }
+                            else {
+                                console.log("ok");
+                                res.status(202).send({ message: "Request already send" })
+                            }
+
+                        }
+
+                    })
                 }
             }
             )
