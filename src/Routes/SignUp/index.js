@@ -6,8 +6,9 @@ const bcrypt = require('bcrypt')
 router.post("/", async (req, res) => {
     try {
         let user = await usersSchema.findOne({ emailAddress: req.body.emailAddress });
+        console.log(user);
         if (user) {
-            return res.status(202).send({ message: 'Your phone number is already registered' });
+            return res.status(202).send({ message: 'Your email address is already registered' });
         } else {
             const securePass = await bcrypt.hash(req.body.password, 10)
             req.body.password = securePass

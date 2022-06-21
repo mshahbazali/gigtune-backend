@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const usersSchema = mongoose.model("Users", mongoose.Schema({
     fullName: { type: String },
-    emaillAddress: { type: String },
+    emailAddress: { type: String },
     phoneNumber: { type: String },
     password: { type: String },
     address: { type: String },
@@ -9,6 +9,7 @@ const usersSchema = mongoose.model("Users", mongoose.Schema({
     Industry: { type: String },
     jobRole: { type: String },
     discription: { type: String },
-    events: { type: Array }
+    events: { type: JSON },
+    suggestions: { type: JSON }
 }))
 exports.usersSchema = usersSchema;

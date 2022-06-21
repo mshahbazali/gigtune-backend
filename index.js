@@ -18,5 +18,7 @@ app.listen(port, () => {
 
 app.use("/api/register", require("./src/Routes/SignUp"))
 app.use("/api/login", require("./src/Routes/Login"))
-app.use("/api/me", require("./src/Routes/User"))
+app.use("/api/user", require("./src/Routes/User"))
 app.use("/api/event", require("./src/Routes/Event"))
+app.use("/api/team", require("./src/Routes/Team"))
+app.use("/api/suggestions", require("./src/Routes/Suggestions"))
