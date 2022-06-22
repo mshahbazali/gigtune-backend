@@ -14,24 +14,23 @@ router.post("/create", async (req, res) => {
                 else {
                     req.body.events = user.events == undefined ? {} : user.events;
                     Array.isArray(req.body.events[req.body.date]) == false ? req.body.events[req.body.date] = new Array(req.body[req.body.date][0]) : req.body.events[req.body.date].push(req.body[req.body.date][0])
-                    const eventTitleCheck = req.body.events[req.body.date].filter(data =>
-                        data.eventTitle != req.body[req.body.date][req.body.eventIndex].eventTitle
-                    );
-                    console.log(eventTitleCheck);
-                    if (eventTitleCheck[0] == undefined) {
-                        const eventCreate = await usersSchema.findByIdAndUpdate(_id, { events: req.body.events }, {
-                            new: true
-                        })
-                        res.status(202).send({
-                            message: "Event successfully created",
-                            data: eventCreate
-                        })
-                    }
-                    else {
-                        res.status(202).send({
-                            message: "Event title already used",
-                        })
-                    }
+                    const eventCreate = await usersSchema.findByIdAndUpdate(_id, req.body, {
+                        new: true
+                    })
+                    res.status(202).send({
+                        message: "Event successfully created",
+                        data: eventCreate
+                    })
+                    // const eventTitleCheck = req.body.events[req.body.date].filter(data =>
+                    //     data.eventTitle != req.body[req.body.date][req.body.eventIndex].eventTitle
+                    // );
+                    // if (eventTitleCheck[0] == undefined) {
+                    // }
+                    // else {
+                    //     res.status(202).send({
+                    //         message: "Event title already used",
+                    //     })
+                    // }
 
                 }
             }

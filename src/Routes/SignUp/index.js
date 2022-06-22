@@ -6,12 +6,13 @@ const bcrypt = require('bcrypt')
 router.post("/", async (req, res) => {
     try {
         let user = await usersSchema.findOne({ emailAddress: req.body.emailAddress });
-        console.log(user);
         if (user) {
             return res.status(202).send({ message: 'Your email address is already registered' });
         } else {
             const securePass = await bcrypt.hash(req.body.password, 10)
             req.body.password = securePass
+            req.body.events = new Object()
+            req.body.suggestions = new Object()
             const addauth = new usersSchema(req.body)
             addauth.save()
             res.status(202).send({ message: "Congratulations! Your Account Successfully Created" })

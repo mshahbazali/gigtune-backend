@@ -13,7 +13,10 @@ router.post("/add", async (req, res) => {
                 if (err) { }
                 else {
                     req.body.events = user.events;
-                    const alreadyAddTeamMember = req.body.events[req.body.date][req.body.eventIndex].team.filter(data => data._id == req.body.team._id);
+                    const alreadyAddTeamMember = req.body.events[req.body.date][req.body.eventIndex].team.filter(data => {
+                        console.log(req.body.events[req.body.date][req.body.eventIndex].team);
+                        data._id == req.body.team._id
+                    });
                     if (alreadyAddTeamMember[0] == undefined) {
                         req.body.events[req.body.date][req.body.eventIndex].team.push(req.body.team);
                         const addedMember = await usersSchema.findByIdAndUpdate(_id, req.body, {
@@ -90,7 +93,6 @@ router.delete("/delete", async (req, res) => {
                                 });
                             }
                             else {
-                                console.log("ok");
                                 res.status(202).send({ message: "Request already send" })
                             }
 
@@ -116,31 +118,22 @@ router.patch("/update", async (req, res) => {
                 else {
                     req.body.events = user.events
                     req.body.events[req.body.date][req.body.eventIndex].team[req.body.teamMemberIndex].charges = req.body.charges
-                    const updateauth = await usersSchema.findByIdAndUpdate(_id, req.body, {
+                    console.log(req.body.events[req.body.date][req.body.eventIndex].team);
+                    const updateauth = await usersSchema.findByIdAndUpdate(_id, { events: req.body.events }, {
                         new: true
                     })
                     res.status(202).send(updateauth)
 
                     const teamMemberId = req.body.team[req.body.teamMemberIndex]._id;
+                    console.log(teamMemberId);
                     usersSchema.findOne({ _id: teamMemberId }, async (err, teamMember) => {
                         if (err) { }
                         else {
-                            req.body.suggestions = teamMember.suggestions == undefined ? {} : teamMember.suggestions;
-                            Array.isArray(req.body.suggestions[req.body.date]) == false ? req.body.suggestions[req.body.date] = new Array(req.body[req.body.date][req.body.eventIndex]) : req.body.suggestions[req.body.date].push(req.body[req.body.date][req.body.eventIndex])
-                            const suggestionsCheck = req.body.suggestions[req.body.date].filter(data =>
-                                data.eventTitle != req.body[req.body.date][req.body.eventIndex].eventTitle
-                            );
-                            console.log(suggestionsCheck);
-                            if (suggestionsCheck[0] == undefined) {
-                                await usersSchema.findByIdAndUpdate(teamMemberId, { suggestions: req.body.suggestions }, {
-                                    new: true
-                                });
-                            }
-                            else {
-                                console.log("ok");
-                                res.status(202).send({ message: "Request already send" })
-                            }
-
+                            req.body.suggestions = teamMember.suggestions
+                            req.body.suggestions[req.body.date][req.body.eventIndex].charges = req.body.charges
+                            await usersSchema.findByIdAndUpdate({ _id: teamMemberId }, { suggestions: req.body.suggestions }, {
+                                new: true
+                            })
                         }
 
                     })

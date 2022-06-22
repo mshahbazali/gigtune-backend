@@ -19,7 +19,10 @@ router.post("/", async (req, res) => {
                     await bcrypt.compare(req.body.password, user[0].password).then((pass) => {
                         if (pass === true) {
                             const token = jwt.sign({ id: user[0].id }, "secret_gigtune");
-                            res.status(202).send({ token: token })
+                            res.status(202).send({
+                                message: "Successfully signed",
+                                token: token
+                            })
                         }
                         else {
                             res.status(202).send({ message: "Your password is incorrect" })
