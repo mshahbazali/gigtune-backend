@@ -9,7 +9,6 @@ const usersSchema = mongoose.model("Users", mongoose.Schema({
     Industry: { type: String },
     jobRole: { type: String },
     discription: { type: String },
-    events: { type: JSON },
-    suggestions: { type: JSON }
+    suggestions: { type: Array }
 }))
 exports.usersSchema = usersSchema;

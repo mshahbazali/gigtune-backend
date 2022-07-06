@@ -27,13 +27,16 @@ router.get("/me", async (req, res) => {
 router.get("/allusers", async (req, res) => {
     try {
         usersSchema.find({}, function (err, users) {
-            var userMap = {};
+            // var userMap = {};
 
-            users.forEach(function (user) {
-                userMap[user._id] = user;
-            });
+            // users.forEach(function (user) {
+            //     userMap[user._id] = user;
+            // });
 
-            res.send(userMap);
+            // res.send(userMap);
+            res.status(201).send({
+                users: users
+            })
         });
     }
     catch (e) {

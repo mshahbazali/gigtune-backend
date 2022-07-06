@@ -13,7 +13,9 @@ router.post("/", async (req, res) => {
             .exec()
             .then(async (user) => {
                 if (user.length < 1) {
-                    res.status(202).send("User Not Found")
+                    res.status(202).send({
+                        message: "Your email is not register"
+                    })
                 }
                 else {
                     await bcrypt.compare(req.body.password, user[0].password).then((pass) => {
