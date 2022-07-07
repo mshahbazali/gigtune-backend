@@ -9,6 +9,7 @@ const usersSchema = mongoose.model("Users", mongoose.Schema({
     Industry: { type: String },
     jobRole: { type: String },
     discription: { type: String },
-    suggestions: { type: Array }
+    suggestions: { type: Array },
+    notificationToken: { type: String }
 }))
 exports.usersSchema = usersSchema;
