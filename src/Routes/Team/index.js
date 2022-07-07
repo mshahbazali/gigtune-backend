@@ -10,7 +10,6 @@ router.post("/add", async (req, res) => {
     try {
         jwt.verify(req.headers.token, "secret_gigtune", async (err, decoded) => {
             const _id = decoded.id
-            console.log(req.body._id);
             eventsSchema.find({ _id: req.body._id }, async (err, event) => {
                 if (err) { }
                 else {
@@ -20,8 +19,7 @@ router.post("/add", async (req, res) => {
                             new: true
                         })
                         usersSchema.find({ _id: req.body.team[0].id }, async (err, user) => {
-                            console.log(user);
-                            await usersSchema.findByIdAndUpdate(req.body.team[0].id, { suggestions: [...user[0].suggestions, event[0]._id] }, {
+                            await usersSchema.findByIdAndUpdate(req.body.team[0].id, { suggestions: [...user[0].suggestions, { eventId: event[0]._id, date: new Date().toISOString().slice(0, 10), status: "Awating" }] }, {
                                 new: true
                             })
                         })
