@@ -18,9 +18,10 @@ router.post("/", async (req, res) => {
                     })
                 }
                 else {
-                    await bcrypt.compare(req.body.password, user[0].password).then((pass) => {
+                    await bcrypt.compare(req.body.password, user[0].password).then(async (pass) => {
                         if (pass === true) {
                             const token = jwt.sign({ id: user[0].id }, "secret_gigtune");
+                            await usersSchema.findByIdAndUpdate({ _id: user[0].id }, { notificationToken: req.body.notificationToken })
                             res.status(202).send({
                                 message: "Successfully signed",
                                 token: token

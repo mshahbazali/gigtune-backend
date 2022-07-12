@@ -108,8 +108,8 @@ router.post("/update", async (req, res) => {
 router.post("/uploadimage", upload.single("image"), async (req, res) => {
     try {
         const oauth2Client = new google.auth.OAuth2(
-            "672364196408-h28bhu3k45rqs6uk7geduql5gjbnooi1.apps.googleusercontent.com",
-            "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",
+            "574959367974-qjitjgdu5fifcoql7skluduo42j7hij3.apps.googleusercontent.com",
+            "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",
             "https://www.developers.google.com/oauthplayground/"
         );
         const drive = google.drive({
@@ -124,8 +124,8 @@ router.post("/uploadimage", upload.single("image"), async (req, res) => {
             body: fs.createReadStream(req.file.path),
         };
         oauth2Client.setCredentials({
-            access_token: 'ya29.A0ARrdaM8h9AtivI2-d5Vi9dB5vHYq1Cg4oz1S3wC00c3JOunGCESwZ654ZOPld5SHRbFFl09Awd4aaeCL2z9_Vav7HXZc2H-MK8I-iO_UJhr2cn1LsLmzEWrpScbT-M15MK04Lj1NWl_53itzW8rzKJcB2lhvYUNnWUtBVEFTQVRBU0ZRRl91NjFWVVBkWldTbU5HMFBCZ2lFaHlvTmY2Zw0163',
-            refresh_token: '1//04BY-kUGL8mRmCgYIARAAGAQSNwF-L9Ir5J7T5dNbvIjap4YM8tQdDoClQJE82ay3eVBth96vN9iWrutv7HWylmqfeFNtMcfY6lo',
+            access_token: 'ya29.A0AVA9y1vfJA6TasGU2xswXrwyePQCAFCCaNHxOiqupPIK9690pjli9NwyFyGN4sEW91hM_T05UB-k-rXdmmAbmESGOZN6-HTu0yERkDUw9ltMuafLoPpWfijDqz2MFh7BB0mGwtXRmMf40_RIn3EU39B5hH7eYUNnWUtBVEFTQVRBU0ZRRl91NjFWd3RzaE5QRFFuOVhsd0VpeVBQa1Yydw0163',
+            refresh_token: '1//04qOyCWaGOWtbCgYIARAAGAQSNwF-L9IrJ0Vpu3-J-LRFW1W9ec0pEwDAhIHdyMHknnieROrJ-up8k2C-Qw7zeAhbX1uTj8YWOOk',
             expiry_date: true
         });
         drive.files.create(
@@ -165,8 +165,8 @@ router.post("/uploadimage", upload.single("image"), async (req, res) => {
 router.post("/uploadfile", upload.single("file"), async (req, res) => {
     try {
         const oauth2Client = new google.auth.OAuth2(
-            "672364196408-h28bhu3k45rqs6uk7geduql5gjbnooi1.apps.googleusercontent.com",
-            "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",
+            "574959367974-qjitjgdu5fifcoql7skluduo42j7hij3.apps.googleusercontent.com",
+            "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",
             "https://www.developers.google.com/oauthplayground/"
         );
         const drive = google.drive({
@@ -181,8 +181,8 @@ router.post("/uploadfile", upload.single("file"), async (req, res) => {
             body: fs.createReadStream(req.file.path),
         };
         oauth2Client.setCredentials({
-            access_token: 'ya29.A0ARrdaM8h9AtivI2-d5Vi9dB5vHYq1Cg4oz1S3wC00c3JOunGCESwZ654ZOPld5SHRbFFl09Awd4aaeCL2z9_Vav7HXZc2H-MK8I-iO_UJhr2cn1LsLmzEWrpScbT-M15MK04Lj1NWl_53itzW8rzKJcB2lhvYUNnWUtBVEFTQVRBU0ZRRl91NjFWVVBkWldTbU5HMFBCZ2lFaHlvTmY2Zw0163',
-            refresh_token: '1//04BY-kUGL8mRmCgYIARAAGAQSNwF-L9Ir5J7T5dNbvIjap4YM8tQdDoClQJE82ay3eVBth96vN9iWrutv7HWylmqfeFNtMcfY6lo',
+            access_token: 'ya29.A0AVA9y1vfJA6TasGU2xswXrwyePQCAFCCaNHxOiqupPIK9690pjli9NwyFyGN4sEW91hM_T05UB-k-rXdmmAbmESGOZN6-HTu0yERkDUw9ltMuafLoPpWfijDqz2MFh7BB0mGwtXRmMf40_RIn3EU39B5hH7eYUNnWUtBVEFTQVRBU0ZRRl91NjFWd3RzaE5QRFFuOVhsd0VpeVBQa1Yydw0163',
+            refresh_token: '1//04qOyCWaGOWtbCgYIARAAGAQSNwF-L9IrJ0Vpu3-J-LRFW1W9ec0pEwDAhIHdyMHknnieROrJ-up8k2C-Qw7zeAhbX1uTj8YWOOk',
             expiry_date: true
         });
         drive.files.create(

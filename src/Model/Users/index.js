@@ -6,10 +6,10 @@ const usersSchema = mongoose.model("Users", mongoose.Schema({
     password: { type: String },
     address: { type: String },
     profileImage: { type: String },
-    Industry: { type: String },
-    jobRole: { type: String },
+    businessName: { type: String },
+    jobRole: { type: Array },
     discription: { type: String },
     suggestions: { type: Array },
-    notificationToken: { type: String }
+    notificationToken: { type: String },
 }))
 exports.usersSchema = usersSchema;

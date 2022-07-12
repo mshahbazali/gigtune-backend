@@ -37,7 +37,7 @@ router.post("/approve", async (req, res) => {
                         await usersSchema.findByIdAndUpdate({ _id: req.body.userId }, req.body.user, {
                             new: true
                         })
-                        res.status(202).send({
+                        res.status(201).send({
                             message: "Suggestion Successfully Approved",
                         })
                     }
@@ -65,7 +65,7 @@ router.post("/reject", async (req, res) => {
                         await usersSchema.findByIdAndUpdate({ _id: req.body.userId }, req.body.user, {
                             new: true
                         })
-                        res.status(202).send({
+                        res.status(201).send({
                             message: "Suggestion Successfully Reject",
                         })
                     }

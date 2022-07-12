@@ -24,19 +24,22 @@ router.get("/me", async (req, res) => {
         res.status(204).send(e)
     }
 })
-router.get("/admin", async (req, res) => {
+router.post("/admin", async (req, res) => {
     try {
         jwt.verify(req.headers.token, "secret_gigtune", function (err, decoded) {
             const _id = decoded.id
-            usersSchema.findOne({ _id: req.body.adminId }, async (err, user) => {
-                if (err) { }
-                else {
-                    res.status(201).send({
-                        user: user
-                    })
+            if (_id) {
+                usersSchema.findOne({ _id: req.body.adminId }, async (err, user) => {
+                    if (err) { }
+                    else {
+                        res.status(201).send({
+                            user: user
+                        })
+                    }
                 }
+                )
             }
-            )
+
         });
 
     }

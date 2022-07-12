@@ -8,5 +8,6 @@ const eventsSchema = mongoose.model("Events", mongoose.Schema({
     files: { type: Array },
     team: { type: Array },
     admin: { type: String },
+    createdAt: { type: String }
 }))
 exports.eventsSchema = eventsSchema;
